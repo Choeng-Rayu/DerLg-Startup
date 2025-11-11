@@ -1,0 +1,287 @@
+/**
+ * Accessibility Styles
+ * WCAG 2.1 Level AA Compliance
+ */
+
+/* Skip to main content link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus visible styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* Ensure buttons have visible focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :focus-visible {
+    outline-width: 3px;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode support for better contrast */
+@media (prefers-color-scheme: dark) {
+  :focus-visible {
+    outline-color: #818cf8;
+  }
+
+  .sr-only {
+    background-color: #1f2937;
+    color: #f3f4f6;
+  }
+}
+
+/* Ensure text has sufficient contrast */
+body {
+  color: #1f2937;
+  background-color: #ffffff;
+}
+
+/* Link styles with sufficient contrast */
+a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #7c3aed;
+}
+
+a:hover {
+  color: #1d4ed8;
+}
+
+/* Button styles with sufficient contrast */
+button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 1rem;
+}
+
+/* Form input styles */
+input,
+select,
+textarea {
+  min-height: 44px;
+  font-size: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #4f46e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Label styles */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Heading hierarchy */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.875rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.625rem;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Ensure images have alt text */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Table accessibility */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 2px solid #d1d5db;
+  font-weight: 600;
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* List accessibility */
+ul,
+ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Code block accessibility */
+code,
+pre {
+  font-family: 'Courier New', monospace;
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Blockquote accessibility */
+blockquote {
+  border-left: 4px solid #4f46e5;
+  padding-left: 1rem;
+  margin-left: 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Ensure sufficient line height for readability */
+body {
+  line-height: 1.6;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Ensure sufficient spacing between interactive elements */
+button + button,
+a + a {
+  margin-left: 0.5rem;
+}
+
+/* Ensure form errors are accessible */
+.error {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.error-message {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+/* Success messages */
+.success {
+  color: #059669;
+  font-weight: 500;
+}
+
+.success-message {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #059669;
+}
+
+/* Warning messages */
+.warning {
+  color: #d97706;
+  font-weight: 500;
+}
+
+.warning-message {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #d97706;
+}
+

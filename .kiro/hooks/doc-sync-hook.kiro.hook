@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "name": "Documentation Sync Hook",
+  "description": "Monitors source files (TypeScript, Python, Dart, TSX) and task specification files across all project components (backend, frontend, system-admin, mobile_app, backend-ai) and triggers documentation updates in README files and /docs folders when changes are detected",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "patterns": [
+      "backend/src/**/*.ts",
+      "backend/package.json",
+      "backend/tsconfig.json",
+      "frontend/src/**/*.tsx",
+      "frontend/src/**/*.ts",
+      "frontend/package.json",
+      "frontend/tsconfig.json",
+      "frontend/next.config.ts",
+      "system-admin/src/**/*.tsx",
+      "system-admin/src/**/*.ts",
+      "system-admin/package.json",
+      "system-admin/tsconfig.json",
+      "system-admin/next.config.ts",
+      "mobile_app/lib/**/*.dart",
+      "mobile_app/pubspec.yaml",
+      "mobile_app/android/app/src/main/kotlin/com/example/mobile_app/**/*.kt",
+      "backend-ai/**/*.py",
+      "backend-ai/requirements.txt",
+      ".kiro/specs/derlg-tourism-platform/tasks.md",
+      ".kiro/specs/derlg-tourism-platform/backend-tasks.md",
+      ".kiro/specs/derlg-tourism-platform/frontend-tasks.md",
+      ".kiro/specs/derlg-tourism-platform/mobile-tasks.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Source files or task files have been modified in the repository. Please analyze the changes and ensure all components are synchronized:\n\n**CRITICAL: COMPONENT SYNCHRONIZATION**\nYou MUST ensure these components work together and are compatible:\n1. Backend API (backend/) - Node.js/Express/TypeScript\n2. Frontend Web (frontend/) - Next.js/React/TypeScript\n3. System Admin (system-admin/) - Next.js fullstack app\n4. Mobile App (mobile_app/) - Flutter/Dart\n5. AI Engine (backend-ai/) - Python/FastAPI\n\n**SYNCHRONIZATION CHECKS:**\n- Verify API endpoints match between backend and all consumers (frontend, mobile_app, system-admin)\n- Ensure data models/types are consistent across all components\n- Check authentication flows work across all platforms\n- Validate payment integration is compatible across web and mobile\n- Confirm database schema changes are reflected in all services\n\n**TASK WORKFLOW:**\nWhen implementing from .kiro/specs/derlg-tourism-platform/tasks.md:\n1. Read detailed guides:\n   - .kiro/specs/derlg-tourism-platform/backend-tasks.md\n   - .kiro/specs/derlg-tourism-platform/frontend-tasks.md\n   - .kiro/specs/derlg-tourism-platform/mobile-tasks.md\n2. Implement changes ensuring cross-component compatibility\n3. Update ALL relevant task files with progress\n4. Verify integration points between components\n\n**DOCUMENTATION UPDATES:**\n- Update backend/docs/ for API changes\n- Update component READMEs (backend/README.md, frontend/README.md, mobile_app/README.md, system-admin/README.md)\n- Document API contracts and data models\n- Update setup instructions if dependencies changed\n- Add integration notes for cross-component features\n\nFocus on ensuring the entire system works as a cohesive platform."
+  }
+}

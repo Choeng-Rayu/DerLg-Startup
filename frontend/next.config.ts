@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   compress: true, // Enable gzip compression
   productionBrowserSourceMaps: false, // Disable source maps in production
-  swcMinify: true, // Use SWC for minification (faster than Terser)
+  // swcMinify is enabled by default in Next.js 15
 
   // Headers for caching and compression
   async headers() {

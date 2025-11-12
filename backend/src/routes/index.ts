@@ -47,26 +47,24 @@ router.use('/bookings', bookingRoutes);
 router.use('/payments', paymentRoutes);
 
 // Tour routes (public and protected)
-router.use('/tours', tourRoutes);
+// router.use('/tours', tourRoutes);
 
 // Event routes (public)
-router.use('/events', eventRoutes);
+// router.use('/events', eventRoutes);
 
 // Review routes (public and protected)
-router.use('/reviews', reviewRoutes);
+// router.use('/reviews', reviewRoutes);
 
 // Telegram webhook routes (public - for Telegram bot webhooks)
-router.use('/webhook/telegram', telegramRoutes);
+// router.use('/webhook/telegram', telegramRoutes);
 
 // Wishlist routes (protected - tourists)
-router.use('/wishlist', wishlistRoutes);
+// router.use('/wishlist', wishlistRoutes);
 
 // User profile routes (protected)
-router.use('/user', userRoutes);
+// router.use('/user', userRoutes);
 
 // Message routes (protected - real-time messaging)
-router.use('/messages', messageRoutes);
-
-// Additional routes will be added in subsequent tasks
+// router.use('/messages', messageRoutes);
 
 export default router;

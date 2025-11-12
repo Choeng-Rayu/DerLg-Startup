@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import { i18n, type Locale } from "../../../i18n.config";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -22,30 +24,32 @@ export function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  // Await params in Next.js 15+
+  const { locale } = await params;
+  
   // Validate that the locale is supported
-  if (!i18n.locales.includes(params.locale as Locale)) {
+  if (!i18n.locales.includes(locale as Locale)) {
     notFound();
   }
-
-  const htmlLang = params.locale === 'km' ? 'km' : 'en';
+  
+  // Get messages for the locale
+  const messages = await getMessages({ locale });
 
   return (
-    <html lang={htmlLang} className="h-full">
-      <body className="font-sans antialiased h-full flex flex-col">
-        <Header />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      <Header />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+    </NextIntlClientProvider>
   );
 }
 

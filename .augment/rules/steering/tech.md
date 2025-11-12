@@ -1,3 +1,7 @@
+---
+type: "always_apply"
+---
+
 # Technology Stack
 
 ## Backend (Node.js/Express)

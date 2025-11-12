@@ -10,8 +10,18 @@ class SMSService {
   private client: twilio.Twilio | null = null;
 
   constructor() {
-    if (config.TWILIO_ACCOUNT_SID && config.TWILIO_AUTH_TOKEN) {
-      this.client = twilio(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
+    // Only initialize Twilio if proper credentials are provided (must start with AC for SID)
+    if (config.TWILIO_ACCOUNT_SID && 
+        config.TWILIO_AUTH_TOKEN && 
+        config.TWILIO_ACCOUNT_SID.startsWith('AC')) {
+      try {
+        this.client = twilio(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
+        logger.info('Twilio SMS service initialized successfully');
+      } catch (error) {
+        logger.warn('Failed to initialize Twilio SMS service:', error);
+      }
+    } else {
+      logger.info('Twilio SMS service not configured - SMS features will be disabled');
     }
   }
 

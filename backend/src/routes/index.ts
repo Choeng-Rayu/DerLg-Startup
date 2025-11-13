@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import type { Router as RouterType } from 'express';
 import authRoutes from './auth.routes';
 import testRoutes from './test.routes';
 import hotelRoutes from './hotel.routes';
@@ -6,15 +7,16 @@ import hotelAdminRoutes from './hotel-admin.routes';
 import roomRoutes from './room.routes';
 import bookingRoutes from './booking.routes';
 import paymentRoutes from './payment.routes';
-import tourRoutes from './tour.routes';
-import eventRoutes from './event.routes';
-import reviewRoutes from './review.routes';
-import telegramRoutes from './telegram.routes';
-import wishlistRoutes from './wishlist.routes';
-import userRoutes from './user.routes';
-import messageRoutes from './message.routes';
+// Commented out imports for routes that are not yet implemented
+// import tourRoutes from './tour.routes';
+// import eventRoutes from './event.routes';
+// import reviewRoutes from './review.routes';
+// import telegramRoutes from './telegram.routes';
+// import wishlistRoutes from './wishlist.routes';
+// import userRoutes from './user.routes';
+// import messageRoutes from './message.routes';
 
-const router = Router();
+const router: RouterType = Router();
 
 // Health check endpoint
 router.get('/health', (_req, res) => {
